@@ -12,7 +12,7 @@ def test_normalizes_weight_volume_pallets_and_iso_date() -> None:
         LLMExtraction(
             data=RawTransportRequestData(
                 weight_kg="2 t",
-                volume_m3="500 l",
+                volume_m3="8,5 m3",
                 pallet_count="4 palets",
                 required_date="2027-09-15",
             )
@@ -20,7 +20,7 @@ def test_normalizes_weight_volume_pallets_and_iso_date() -> None:
     )
 
     assert result.data.weight_kg == 2000
-    assert result.data.volume_m3 == 0.5
+    assert result.data.volume_m3 == 8.5
     assert result.data.pallet_count == 4
     assert result.data.required_date == date(2027, 9, 15)
     assert result.snapshot["data"]["weight_kg"] == "2 t"

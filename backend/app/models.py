@@ -14,7 +14,12 @@ class TransportRequest(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     source_text: Mapped[str] = mapped_column(Text)
     status: Mapped[RequestStatus] = mapped_column(
-        Enum(RequestStatus, name="request_status"), nullable=False
+        Enum(
+            RequestStatus,
+            name="request_status",
+            values_callable=lambda enum: [member.value for member in enum],
+        ),
+        nullable=False,
     )
     customer_name: Mapped[str | None] = mapped_column(String(255))
     origin: Mapped[str | None] = mapped_column(String(255))

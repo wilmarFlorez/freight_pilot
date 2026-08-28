@@ -6,14 +6,11 @@ Este es el primer punto de entrada para una sesion nueva. Resume que debe hacers
 
 ## Hacer ahora
 
-Resolver el prerrequisito de la **fase 5: demo** y completar el cierre de portfolio:
+Cerrar la **fase 5: demo** con un activo visual de portfolio:
 
-- Implementar `POST /demo/seed`: la ruta esta definida en `PLAN.md`, pero no existe aun en `backend/app/main.py`. Debe crear datos reproducibles para los casos completo, incompleto y ambiguo, sin llamar al LLM.
-- Cubrir la siembra con pruebas de API y actualizar el registro de progreso en `PLAN.md`.
-- Levantar PostgreSQL, API y frontend segun `README.md` y ejecutar `POST /demo/seed`.
-- Confirmar que el caso completo queda `ready_for_quote`, y que los casos incompleto y ambiguo quedan `needs_review` con motivos visibles.
-- Corregir un caso pendiente desde la interfaz y confirmar su revalidacion a `ready_for_quote`.
-- Añadir al README capturas o un video corto que muestre el flujo, sin ampliar el producto ni la infraestructura.
+- Ejecutar `POST /demo/seed` con PostgreSQL, API y frontend iniciados segun `README.md`.
+- En navegador, grabar o capturar el recorrido: caso completo listo, caso incompleto con incidencia, correccion del destino y revalidacion a `ready_for_quote`.
+- Enlazar la captura o video corto desde `README.md` y marcar la fase 5 como hecha en `PLAN.md`.
 
 ## Contexto puntual
 
@@ -22,4 +19,4 @@ Resolver el prerrequisito de la **fase 5: demo** y completar el cierre de portfo
 3. Consultar `README.md` para levantar y verificar el entorno local.
 4. Revisar `frontend/src/app/page.tsx`: la interfaz ya consume `POST /requests/process`, `GET /requests` y `PATCH /requests/{id}`; la URL de API se configura con `NEXT_PUBLIC_API_URL` (por defecto `http://127.0.0.1:8000`).
 
-No ampliar el backend fuera de la ruta semilla ya planificada ni crear funcionalidades de TMS. El LLM no puede decidir el estado final: la validacion determinista existente sigue siendo la autoridad. La fase 4 esta completada: lint, build y 25 pruebas de backend correctas; queda la verificacion manual visual con los servicios levantados.
+`POST /demo/seed` ya esta implementado, no llama al LLM y restablece los tres casos documentados. La verificacion local de API fue correcta, incluida la correccion y revalidacion; solo falta el activo visual manual. No ampliar el producto ni la infraestructura. La validacion determinista sigue siendo la autoridad del estado.

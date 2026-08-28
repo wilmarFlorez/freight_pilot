@@ -78,6 +78,22 @@ DEMO_REQUESTS: dict[str, LLMExtraction] = {
     ),
 }
 
+DEMO_SOURCE_TEXTS = {
+    "completo": (
+        "Hola, necesitamos recoger 4 palets de conservas de Alimentos Sierra en Mercamadrid "
+        "para entregarlos en el Poligono Fuente del Jarro de Paterna el 15/09/2027. "
+        "Son 1.200 kg y 8,5 m3; necesitamos lona. Descarga entre las 09:00 y las 12:00."
+    ),
+    "incompleto": (
+        "Buenos dias, Maderas Roble necesita mover 2 toneladas de tableros desde Valladolid "
+        "el 18/09/2027. Aun tenemos que confirmar el destino con el cliente."
+    ),
+    "ambiguo": (
+        "Bodegas del Norte solicita enviar 6 palets de vino embotellado de Logrono a Barcelona "
+        "el proximo viernes. Indican 1.200 kg, aunque en otro mensaje hablan de 900 kg."
+    ),
+}
+
 
 def normalize_extraction(extraction: LLMExtraction) -> ExtractionResult:
     raw_data = extraction.data
@@ -142,7 +158,7 @@ def _normalize_measure(value: float | str | None, units: dict[str, float]) -> fl
     if isinstance(value, (int, float)):
         return float(value)
 
-    match = re.fullmatch(r"\s*([0-9][0-9.,]*)\s*([a-zA-Z³]+)?\s*", value.casefold())
+    match = re.fullmatch(r"\s*([0-9][0-9.,]*)\s*([a-zA-Z0-9³]+)?\s*", value.casefold())
     if not match:
         return None
     number = _parse_number(match.group(1))

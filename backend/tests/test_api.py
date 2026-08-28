@@ -71,6 +71,33 @@ def test_extraction_error_does_not_persist_request(monkeypatch) -> None:
     assert session.query(main.TransportRequest).count() == 0
 
 
+def test_seeds_the_three_documented_demo_cases_without_calling_llm(monkeypatch) -> None:
+    client, session = api_client()
+    monkeypatch.setattr(
+        main,
+        "extract_transport_request",
+        lambda _: (_ for _ in ()).throw(AssertionError("La siembra no debe llamar al LLM")),
+    )
+
+    response = client.post("/demo/seed")
+
+    assert response.status_code == 201
+    cases = {request["customer_name"]: request for request in response.json()}
+    assert cases["Alimentos Sierra"]["status"] == "ready_for_quote"
+    assert cases["Maderas Roble"]["status"] == "needs_review"
+    assert cases["Bodegas del Norte"]["status"] == "needs_review"
+    assert any(issue["field"] == "destination" for issue in cases["Maderas Roble"]["validation_issues"])
+    assert any(
+        issue["field"] == "required_date" for issue in cases["Bodegas del Norte"]["validation_issues"]
+    )
+    assert session.query(main.TransportRequest).count() == 3
+
+    repeated = client.post("/demo/seed")
+
+    assert repeated.status_code == 201
+    assert session.query(main.TransportRequest).count() == 3
+
+
 def api_client() -> tuple[TestClient, Session]:
     engine = create_engine(
         "sqlite://",

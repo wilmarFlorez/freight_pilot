@@ -251,8 +251,11 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Completar fase 2: extraccion | Hecho | Servicio OpenAI directo, normalizacion de unidades y fechas, y tres casos simulados cubiertos por pruebas unitarias. |
 | 2026-08-28 | Completar fase 3: API | Hecho | Endpoints de proceso, consulta y correccion con persistencia, revalidacion determinista y 3 pruebas de API. |
 | 2026-08-28 | Completar fase 4: interfaz | Hecho | Pantalla responsive de entrada, bandeja filtrable, detalle trazable y correccion parcial con revalidacion. `npm run lint --prefix frontend`, `npm run build --prefix frontend` y 25 pruebas de backend correctas. |
-| 2026-08-28 | Preparar verificacion de fase 5 | Bloqueado | La ruta `POST /demo/seed`, definida en la API minima, aun no existe; se requieren los casos semilla para una verificacion reproducible sin depender del LLM. |
+| 2026-08-28 | Implementar y probar `POST /demo/seed` | Hecho | Siembra idempotente de los casos completo, incompleto y ambiguo sin LLM; una prueba de API los cubre. |
+| 2026-08-28 | Verificar recorrido de demo local | Hecho | PostgreSQL, API y frontend iniciados; la siembra dejo un caso listo y dos pendientes con incidencias visibles. La correccion del destino del caso incompleto lo revalido como `ready_for_quote`. |
+| 2026-08-28 | Corregir persistencia y normalizacion detectadas en la demo | Hecho | El enum de SQLAlchemy persiste los valores PostgreSQL y `m3` se normaliza como volumen. 26 pruebas de backend y lint de frontend correctos. |
+| 2026-08-28 | Crear captura o video de portfolio | Pendiente | Requiere una captura o grabacion manual del recorrido visual en navegador. |
 
 ## 14. Proxima accion
 
-Implementar el endpoint planificado `POST /demo/seed` y despues completar la fase 5: verificar manualmente los tres casos y preparar el README visual con capturas o un video corto.
+Crear una captura o video corto del recorrido visual en navegador y enlazarlo desde el README para cerrar la fase 5.

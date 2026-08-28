@@ -23,6 +23,14 @@ El alcance y las decisiones del proyecto estan en [PLAN.md](PLAN.md).
 
 La API queda disponible en `http://127.0.0.1:8000`; comprobarla con `http://127.0.0.1:8000/health`. El frontend queda disponible en `http://localhost:3000`.
 
+## Recorrido de demo
+
+Con la API iniciada, carga los tres casos sin usar el LLM con `curl -X POST http://127.0.0.1:8000/demo/seed`.
+
+En `http://localhost:3000`, el caso de Alimentos Sierra queda listo para cotizar. Maderas Roble requiere un destino y Bodegas del Norte requiere confirmar su fecha. Corrige el destino de Maderas Roble desde el formulario de revision para comprobar que se revalida como `ready_for_quote` y que la correccion queda visible en la trazabilidad.
+
+La siembra es idempotente y restablece los datos originales de los tres casos, por lo que puede ejecutarse antes de cada demostracion.
+
 ## Verificacion de la base inicial
 
 - Backend: `uv run --directory backend python -c "from app.main import app; assert app.title == 'Freight Pilot API'"`

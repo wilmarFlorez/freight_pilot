@@ -13,7 +13,7 @@ from app.domain import (
     TransportRequestCorrection,
     TransportRequestData,
 )
-from app.extraction import extract_transport_request
+from app.extraction import DEMO_REQUESTS, DEMO_SOURCE_TEXTS, extract_transport_request, normalize_extraction
 from app.models import TransportRequest
 from app.validation import validate_transport_request
 
@@ -93,6 +93,33 @@ def process_request(payload: ProcessRequest, session: Session = Depends(get_sess
     session.commit()
     session.refresh(request)
     return serialize_request(request)
+
+
+@app.post("/demo/seed", status_code=status.HTTP_201_CREATED)
+def seed_demo_requests(session: Session = Depends(get_session)) -> list[dict[str, Any]]:
+    """Create the documented demo cases without invoking the LLM."""
+    requests: list[TransportRequest] = []
+    for case, source_text in DEMO_SOURCE_TEXTS.items():
+        extraction = normalize_extraction(DEMO_REQUESTS[case])
+        request = session.scalar(
+            select(TransportRequest).where(TransportRequest.source_text == source_text)
+        )
+        if request is None:
+            request = TransportRequest(
+                source_text=source_text,
+            )
+            session.add(request)
+        apply_data(request, extraction.data)
+        request.uncertain_fields = extraction.uncertain_fields
+        request.extraction_snapshot = extraction.snapshot
+        request.corrections_snapshot = None
+        apply_validation(request, extraction.data)
+        requests.append(request)
+
+    session.commit()
+    for request in requests:
+        session.refresh(request)
+    return [serialize_request(request) for request in requests]
 
 
 @app.get("/requests")
