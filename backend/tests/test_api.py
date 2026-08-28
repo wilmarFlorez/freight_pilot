@@ -18,8 +18,8 @@ def test_processes_and_persists_validated_extraction(monkeypatch) -> None:
     extraction = ExtractionResult(
         data=TransportRequestData(
             customer_name="Alimentos Sierra",
-            origin="Madrid",
-            destination="Valencia",
+            origin="Cali",
+            destination="Medellín",
             required_date=date(2027, 9, 15),
         ),
         uncertain_fields=[],

@@ -159,7 +159,7 @@ El orden evita construir interfaz o integraciones antes de probar el flujo de va
 | 2. Extraccion | Servicio LLM con salida estructurada, normalizacion y casos simulados para desarrollo | Hecho |
 | 3. API | Endpoints del flujo, persistencia y gestion de errores de LLM | Hecho |
 | 4. Interfaz | Formulario de entrada, bandeja y pantalla de revision/correccion | Hecho |
-| 5. Demo | Casos semilla, recorrido manual, README visual y capturas o video corto | Pendiente |
+| 5. Demo | Casos semilla, recorrido manual, README visual y capturas o video corto | Hecho |
 
 ### Secuencia diaria sugerida
 
@@ -254,8 +254,12 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Implementar y probar `POST /demo/seed` | Hecho | Siembra idempotente de los casos completo, incompleto y ambiguo sin LLM; una prueba de API los cubre. |
 | 2026-08-28 | Verificar recorrido de demo local | Hecho | PostgreSQL, API y frontend iniciados; la siembra dejo un caso listo y dos pendientes con incidencias visibles. La correccion del destino del caso incompleto lo revalido como `ready_for_quote`. |
 | 2026-08-28 | Corregir persistencia y normalizacion detectadas en la demo | Hecho | El enum de SQLAlchemy persiste los valores PostgreSQL y `m3` se normaliza como volumen. 26 pruebas de backend y lint de frontend correctos. |
-| 2026-08-28 | Crear captura o video de portfolio | Pendiente | Requiere una captura o grabacion manual del recorrido visual en navegador. |
+| 2026-08-28 | Crear capturas de portfolio y cerrar fase 5 | Hecho | Tres capturas en `docs/assets/` muestran bandeja, incidencia de destino y revalidacion; estan enlazadas desde el README. |
+| 2026-08-28 | Cargar configuracion local del backend desde `.env` | Hecho | La clave de OpenAI y la URL de PostgreSQL se cargan al iniciar; README aclara que no se requiere `frontend/.env.local`. |
+| 2026-08-28 | Mejorar la explicacion de la demo en la pantalla inicial | Hecho | La interfaz explica el problema, el flujo de tres pasos y permite cargar casos de ejemplo desde la propia pagina. |
+| 2026-08-28 | Sustituir las acciones de la introduccion por un ejemplo copiable | Hecho | La pantalla muestra un mensaje de cliente en cursiva como caso de uso y un icono para copiarlo antes de probarlo. |
+| 2026-08-28 | Aclarar el termino palets para visitantes no especializados | Hecho | El ejemplo, el placeholder y el campo usan “plataformas de carga (palets)”. |
 
 ## 14. Proxima accion
 
-Crear una captura o video corto del recorrido visual en navegador y enlazarlo desde el README para cerrar la fase 5.
+Fases 0 a 5 completadas. La demo esta lista para presentacion local; el despliegue y un video corto quedan como mejoras opcionales de portfolio.

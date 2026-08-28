@@ -6,7 +6,10 @@ from typing import Any
 from openai import OpenAI
 from pydantic import BaseModel, ConfigDict
 
+from app.config import load_environment
 from app.domain import TransportRequestData
+
+load_environment()
 
 
 class RawTransportRequestData(BaseModel):
@@ -43,7 +46,7 @@ DEMO_REQUESTS: dict[str, LLMExtraction] = {
     "completo": LLMExtraction(
         data=RawTransportRequestData(
             customer_name="Alimentos Sierra",
-            origin="Mercamadrid, Madrid",
+            origin="Cali, Colombia",
             destination="Poligono Fuente del Jarro, Paterna",
             cargo_type="Conservas en palets",
             weight_kg="1,200 kg",
@@ -80,7 +83,7 @@ DEMO_REQUESTS: dict[str, LLMExtraction] = {
 
 DEMO_SOURCE_TEXTS = {
     "completo": (
-        "Hola, necesitamos recoger 4 palets de conservas de Alimentos Sierra en Mercamadrid "
+        "Hola, necesitamos recoger 4 palets de conservas de Alimentos Sierra en MerCali "
         "para entregarlos en el Poligono Fuente del Jarro de Paterna el 15/09/2027. "
         "Son 1.200 kg y 8,5 m3; necesitamos lona. Descarga entre las 09:00 y las 12:00."
     ),

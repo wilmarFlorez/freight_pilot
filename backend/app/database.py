@@ -5,6 +5,10 @@ from collections.abc import Generator
 
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
+from app.config import load_environment
+
+load_environment()
+
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql+psycopg://freight_pilot:freight_pilot@localhost:55432/freight_pilot",
