@@ -1,6 +1,7 @@
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Query, status
+from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAIError
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -17,6 +18,12 @@ from app.models import TransportRequest
 from app.validation import validate_transport_request
 
 app = FastAPI(title="Freight Pilot API", version="0.1.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_methods=["GET", "POST", "PATCH"],
+    allow_headers=["Content-Type"],
+)
 
 
 @app.get("/health")

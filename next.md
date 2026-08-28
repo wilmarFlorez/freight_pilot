@@ -6,20 +6,20 @@ Este es el primer punto de entrada para una sesion nueva. Resume que debe hacers
 
 ## Hacer ahora
 
-Completar la **fase 4: interfaz** en `frontend/` usando la API ya disponible:
+Resolver el prerrequisito de la **fase 5: demo** y completar el cierre de portfolio:
 
-- Crear una pantalla de entrada para pegar texto y enviarlo a `POST /requests/process`.
-- Crear una bandeja que consulte `GET /requests`, permita filtrar por estado y abra el detalle de una solicitud.
-- Crear una pantalla de detalle que muestre texto original, extraccion, incertidumbres, incidencias y correcciones humanas mediante `PATCH /requests/{id}`.
-- Mantener visibles los estados `needs_review` y `ready_for_quote` y la trazabilidad que devuelve la API.
-- Verificar el recorrido visual en escritorio y movil sin añadir funcionalidades fuera del alcance.
+- Implementar `POST /demo/seed`: la ruta esta definida en `PLAN.md`, pero no existe aun en `backend/app/main.py`. Debe crear datos reproducibles para los casos completo, incompleto y ambiguo, sin llamar al LLM.
+- Cubrir la siembra con pruebas de API y actualizar el registro de progreso en `PLAN.md`.
+- Levantar PostgreSQL, API y frontend segun `README.md` y ejecutar `POST /demo/seed`.
+- Confirmar que el caso completo queda `ready_for_quote`, y que los casos incompleto y ambiguo quedan `needs_review` con motivos visibles.
+- Corregir un caso pendiente desde la interfaz y confirmar su revalidacion a `ready_for_quote`.
+- Añadir al README capturas o un video corto que muestre el flujo, sin ampliar el producto ni la infraestructura.
 
 ## Contexto puntual
 
 1. Leer `AGENTS.md`: restricciones tecnicas, de producto y comandos locales.
-2. Leer `PLAN.md`, secciones 5, 6, 8, 9 y 10: arquitectura, modelo, reglas, entregable de fase, casos de demo y pruebas requeridas.
-3. Revisar `backend/app/main.py` y `backend/app/domain.py`: contratos, rutas y respuestas disponibles.
-4. Revisar la estructura y estilos existentes en `frontend/` antes de crear componentes.
-5. Consultar `README.md` solo para levantar y verificar el entorno local.
+2. Leer `PLAN.md`, secciones 8, 9, 10 y 11: entregable, casos, verificaciones y presentacion final.
+3. Consultar `README.md` para levantar y verificar el entorno local.
+4. Revisar `frontend/src/app/page.tsx`: la interfaz ya consume `POST /requests/process`, `GET /requests` y `PATCH /requests/{id}`; la URL de API se configura con `NEXT_PUBLIC_API_URL` (por defecto `http://127.0.0.1:8000`).
 
-No ampliar el backend ni crear funcionalidades de TMS. El LLM no puede decidir el estado final: la validacion determinista existente sigue siendo la autoridad.
+No ampliar el backend fuera de la ruta semilla ya planificada ni crear funcionalidades de TMS. El LLM no puede decidir el estado final: la validacion determinista existente sigue siendo la autoridad. La fase 4 esta completada: lint, build y 25 pruebas de backend correctas; queda la verificacion manual visual con los servicios levantados.

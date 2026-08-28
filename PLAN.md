@@ -2,7 +2,7 @@
 
 > **Fuente unica de verdad.** Este documento define el alcance, las decisiones y el progreso del proyecto. Toda decision nueva, cambio de alcance, bloqueo o tarea terminada debe actualizarse aqui. Si otro documento lo contradice, prevalece este.
 
-**Estado:** en desarrollo (fases 0 a 3 completadas)
+**Estado:** en desarrollo (fases 0 a 4 completadas)
 **Ultima actualizacion:** 2026-08-28  
 **Objetivo de entrega:** demo funcional de portfolio en pocos dias
 
@@ -158,7 +158,7 @@ El orden evita construir interfaz o integraciones antes de probar el flujo de va
 | 1. Dominio | Esquemas Pydantic, modelo SQLAlchemy, migracion inicial y reglas unitarias | Hecho |
 | 2. Extraccion | Servicio LLM con salida estructurada, normalizacion y casos simulados para desarrollo | Hecho |
 | 3. API | Endpoints del flujo, persistencia y gestion de errores de LLM | Hecho |
-| 4. Interfaz | Formulario de entrada, bandeja y pantalla de revision/correccion | Pendiente |
+| 4. Interfaz | Formulario de entrada, bandeja y pantalla de revision/correccion | Hecho |
 | 5. Demo | Casos semilla, recorrido manual, README visual y capturas o video corto | Pendiente |
 
 ### Secuencia diaria sugerida
@@ -250,7 +250,9 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Completar fase 1: dominio | Hecho | Esquemas Pydantic, modelo SQLAlchemy, migracion Alembic inicial y 15 pruebas unitarias de validacion. |
 | 2026-08-28 | Completar fase 2: extraccion | Hecho | Servicio OpenAI directo, normalizacion de unidades y fechas, y tres casos simulados cubiertos por pruebas unitarias. |
 | 2026-08-28 | Completar fase 3: API | Hecho | Endpoints de proceso, consulta y correccion con persistencia, revalidacion determinista y 3 pruebas de API. |
+| 2026-08-28 | Completar fase 4: interfaz | Hecho | Pantalla responsive de entrada, bandeja filtrable, detalle trazable y correccion parcial con revalidacion. `npm run lint --prefix frontend`, `npm run build --prefix frontend` y 25 pruebas de backend correctas. |
+| 2026-08-28 | Preparar verificacion de fase 5 | Bloqueado | La ruta `POST /demo/seed`, definida en la API minima, aun no existe; se requieren los casos semilla para una verificacion reproducible sin depender del LLM. |
 
 ## 14. Proxima accion
 
-Implementar la interfaz operativa para entrada, bandeja y revision/correccion usando los endpoints de la fase 3.
+Implementar el endpoint planificado `POST /demo/seed` y despues completar la fase 5: verificar manualmente los tres casos y preparar el README visual con capturas o un video corto.
