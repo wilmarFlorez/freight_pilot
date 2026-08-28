@@ -2,7 +2,7 @@
 
 > **Fuente unica de verdad.** Este documento define el alcance, las decisiones y el progreso del proyecto. Toda decision nueva, cambio de alcance, bloqueo o tarea terminada debe actualizarse aqui. Si otro documento lo contradice, prevalece este.
 
-**Estado:** en desarrollo (fases 0 y 1 completadas)
+**Estado:** en desarrollo (fases 0 a 3 completadas)
 **Ultima actualizacion:** 2026-08-28  
 **Objetivo de entrega:** demo funcional de portfolio en pocos dias
 
@@ -156,8 +156,8 @@ El orden evita construir interfaz o integraciones antes de probar el flujo de va
 | --- | --- | --- |
 | 0. Base | Estructura de proyecto, variables de entorno, PostgreSQL local e instrucciones de arranque | Hecho |
 | 1. Dominio | Esquemas Pydantic, modelo SQLAlchemy, migracion inicial y reglas unitarias | Hecho |
-| 2. Extraccion | Servicio LLM con salida estructurada, normalizacion y casos simulados para desarrollo | Pendiente |
-| 3. API | Endpoints del flujo, persistencia y gestion de errores de LLM | Pendiente |
+| 2. Extraccion | Servicio LLM con salida estructurada, normalizacion y casos simulados para desarrollo | Hecho |
+| 3. API | Endpoints del flujo, persistencia y gestion de errores de LLM | Hecho |
 | 4. Interfaz | Formulario de entrada, bandeja y pantalla de revision/correccion | Pendiente |
 | 5. Demo | Casos semilla, recorrido manual, README visual y capturas o video corto | Pendiente |
 
@@ -248,7 +248,9 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Completar fase 0: base del proyecto | Hecho | FastAPI, Next.js, Compose/PostgreSQL, variables de entorno y README verificados localmente. |
 | 2026-08-28 | Crear punto de reentrada para nuevas sesiones | Hecho | `next_step.md` resume el trabajo inmediato y las fuentes de contexto. |
 | 2026-08-28 | Completar fase 1: dominio | Hecho | Esquemas Pydantic, modelo SQLAlchemy, migracion Alembic inicial y 15 pruebas unitarias de validacion. |
+| 2026-08-28 | Completar fase 2: extraccion | Hecho | Servicio OpenAI directo, normalizacion de unidades y fechas, y tres casos simulados cubiertos por pruebas unitarias. |
+| 2026-08-28 | Completar fase 3: API | Hecho | Endpoints de proceso, consulta y correccion con persistencia, revalidacion determinista y 3 pruebas de API. |
 
 ## 14. Proxima accion
 
-Implementar el servicio de extraccion LLM, la normalizacion y los casos simulados de desarrollo antes de exponer endpoints de negocio.
+Implementar la interfaz operativa para entrada, bandeja y revision/correccion usando los endpoints de la fase 3.

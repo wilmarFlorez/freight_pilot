@@ -6,18 +6,20 @@ Este es el primer punto de entrada para una sesion nueva. Resume que debe hacers
 
 ## Hacer ahora
 
-Completar la **fase 2: extraccion** en el backend antes de exponer endpoints de negocio o ampliar la interfaz:
+Completar la **fase 4: interfaz** en `frontend/` usando la API ya disponible:
 
-- Crear un servicio de extraccion que use directamente el SDK del proveedor LLM y devuelva datos ajustados a `TransportRequestData`.
-- Validar la salida del LLM con Pydantic, normalizar unidades y fechas cuando sea posible, y conservar la respuesta original para trazabilidad.
-- Implementar casos simulados para desarrollo que permitan probar los textos completo, incompleto y ambiguo sin una clave LLM.
-- Añadir pruebas unitarias para la normalizacion critica y los casos simulados.
+- Crear una pantalla de entrada para pegar texto y enviarlo a `POST /requests/process`.
+- Crear una bandeja que consulte `GET /requests`, permita filtrar por estado y abra el detalle de una solicitud.
+- Crear una pantalla de detalle que muestre texto original, extraccion, incertidumbres, incidencias y correcciones humanas mediante `PATCH /requests/{id}`.
+- Mantener visibles los estados `needs_review` y `ready_for_quote` y la trazabilidad que devuelve la API.
+- Verificar el recorrido visual en escritorio y movil sin añadir funcionalidades fuera del alcance.
 
 ## Contexto puntual
 
 1. Leer `AGENTS.md`: restricciones tecnicas, de producto y comandos locales.
 2. Leer `PLAN.md`, secciones 5, 6, 8, 9 y 10: arquitectura, modelo, reglas, entregable de fase, casos de demo y pruebas requeridas.
-3. Revisar `backend/app/domain.py`, `backend/app/validation.py` y `backend/pyproject.toml`: contratos de dominio y dependencias actuales.
-4. Consultar `README.md` solo para levantar y verificar el entorno local.
+3. Revisar `backend/app/main.py` y `backend/app/domain.py`: contratos, rutas y respuestas disponibles.
+4. Revisar la estructura y estilos existentes en `frontend/` antes de crear componentes.
+5. Consultar `README.md` solo para levantar y verificar el entorno local.
 
-No crear endpoints de negocio ni pantallas nuevas hasta que la extraccion, normalizacion y sus pruebas unitarias esten terminadas. El LLM no puede decidir el estado final: la validacion determinista existente sigue siendo la autoridad.
+No ampliar el backend ni crear funcionalidades de TMS. El LLM no puede decidir el estado final: la validacion determinista existente sigue siendo la autoridad.

@@ -1,7 +1,7 @@
 from datetime import date
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class RequestStatus(StrEnum):
@@ -57,3 +57,31 @@ class TransportRequestData(BaseModel):
 class ValidationResult(BaseModel):
     status: RequestStatus
     issues: list[ValidationIssue]
+
+
+class ProcessRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source_text: str = Field(min_length=1)
+
+
+class TransportRequestCorrection(BaseModel):
+    """Fields explicitly corrected by the operator."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    customer_name: str | None = None
+    origin: str | None = None
+    destination: str | None = None
+    cargo_type: str | None = None
+    weight_kg: float | None = None
+    volume_m3: float | None = None
+    pallet_count: int | None = None
+    vehicle_type: str | None = None
+    required_date: date | None = None
+    notes: str | None = None
+
+    @field_validator("customer_name", "origin", "destination", "cargo_type", "vehicle_type", "notes")
+    @classmethod
+    def blank_strings_are_missing(cls, value: object) -> object:
+        return TransportRequestData.blank_strings_are_missing(value)
