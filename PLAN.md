@@ -2,7 +2,7 @@
 
 > **Fuente unica de verdad.** Este documento define el alcance, las decisiones y el progreso del proyecto. Toda decision nueva, cambio de alcance, bloqueo o tarea terminada debe actualizarse aqui. Si otro documento lo contradice, prevalece este.
 
-**Estado:** en desarrollo (fase 0 completada)  
+**Estado:** en desarrollo (fases 0 y 1 completadas)
 **Ultima actualizacion:** 2026-08-28  
 **Objetivo de entrega:** demo funcional de portfolio en pocos dias
 
@@ -155,7 +155,7 @@ El orden evita construir interfaz o integraciones antes de probar el flujo de va
 | Fase | Entregable verificable | Estado |
 | --- | --- | --- |
 | 0. Base | Estructura de proyecto, variables de entorno, PostgreSQL local e instrucciones de arranque | Hecho |
-| 1. Dominio | Esquemas Pydantic, modelo SQLAlchemy, migracion inicial y reglas unitarias | Pendiente |
+| 1. Dominio | Esquemas Pydantic, modelo SQLAlchemy, migracion inicial y reglas unitarias | Hecho |
 | 2. Extraccion | Servicio LLM con salida estructurada, normalizacion y casos simulados para desarrollo | Pendiente |
 | 3. API | Endpoints del flujo, persistencia y gestion de errores de LLM | Pendiente |
 | 4. Interfaz | Formulario de entrada, bandeja y pantalla de revision/correccion | Pendiente |
@@ -247,7 +247,8 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Crear instrucciones para agentes | Hecho | `AGENTS.md` recoge los limites y decisiones operativas verificadas. |
 | 2026-08-28 | Completar fase 0: base del proyecto | Hecho | FastAPI, Next.js, Compose/PostgreSQL, variables de entorno y README verificados localmente. |
 | 2026-08-28 | Crear punto de reentrada para nuevas sesiones | Hecho | `next_step.md` resume el trabajo inmediato y las fuentes de contexto. |
+| 2026-08-28 | Completar fase 1: dominio | Hecho | Esquemas Pydantic, modelo SQLAlchemy, migracion Alembic inicial y 15 pruebas unitarias de validacion. |
 
 ## 14. Proxima accion
 
-Implementar el modelo de dominio, la migracion inicial y las reglas de negocio con pruebas unitarias antes de integrar la API LLM.
+Implementar el servicio de extraccion LLM, la normalizacion y los casos simulados de desarrollo antes de exponer endpoints de negocio.
