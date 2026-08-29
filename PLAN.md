@@ -268,6 +268,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Adoptar paleta de despacho logistico | Hecho | El frontend usa azul noche para control, naranja de alta visibilidad para acciones y alertas, y superficies calidas de concreto. Se conservaron contraste y estados diferenciables. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
 | 2026-08-28 | Refinar la paleta con referencia editorial | Hecho | Se reemplazo la paleta logistica por neutros luminosos, azul sobrio para interacciones y rojo semantico para incidencias; tambien se suavizaron bordes y sombras. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
 | 2026-08-28 | Ajustar las filas activas de la bandeja | Hecho | Las solicitudes de la bandeja mantienen bordes rectos, incluido su estado activo, para separarlas de los botones de accion redondeados. |
+| 2026-08-28 | Añadir favicon de Freight Pilot | Hecho | Se incorporo `frontend/src/app/icon.svg`, basado en el icono `Truck` de Lucide y en el azul de la interfaz; Next.js lo detecta automaticamente como favicon. |
 
 ## 14. Proxima accion
 
