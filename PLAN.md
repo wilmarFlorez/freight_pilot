@@ -262,6 +262,12 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Aclarar el termino palets para visitantes no especializados | Hecho | El ejemplo, el placeholder y el campo usan “plataformas de carga (palets)”. |
 | 2026-08-28 | Reordenar la entrada de nueva solicitud | Hecho | El formulario ahora usa una composición vertical y sitúa el caso de uso entre su explicación y el área de texto. |
 | 2026-08-28 | Ilustrar integraciones habituales en Colombia | Hecho | Al final de la pantalla, la demo presenta flujos visuales desde WhatsApp Business, Gmail/Microsoft 365 y Excel/Google Sheets hacia CRM, TMS o ERP, sin ampliar el alcance funcional. |
+| 2026-08-28 | Añadir version bilingue del frontend | Hecho | Selector persistente ES/EN, interfaz traducida y atributo de idioma del documento actualizado dinamicamente. |
+| 2026-08-28 | Mejorar el copiado del caso de uso | Hecho | Se sustituyo el SVG defectuoso por iconos Lucide y el boton confirma visualmente el copiado durante 2.5 segundos. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
+| 2026-08-28 | Reforzar la jerarquia visual con iconos operativos | Hecho | Los iconos Lucide distinguen las etapas de captura, extraccion y validacion, la bandeja, la trazabilidad y los flujos de integracion sin reemplazar texto. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
+| 2026-08-28 | Adoptar paleta de despacho logistico | Hecho | El frontend usa azul noche para control, naranja de alta visibilidad para acciones y alertas, y superficies calidas de concreto. Se conservaron contraste y estados diferenciables. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
+| 2026-08-28 | Refinar la paleta con referencia editorial | Hecho | Se reemplazo la paleta logistica por neutros luminosos, azul sobrio para interacciones y rojo semantico para incidencias; tambien se suavizaron bordes y sombras. `npm run lint --prefix frontend` y `npm run build --prefix frontend` correctos. |
+| 2026-08-28 | Ajustar las filas activas de la bandeja | Hecho | Las solicitudes de la bandeja mantienen bordes rectos, incluido su estado activo, para separarlas de los botones de accion redondeados. |
 
 ## 14. Proxima accion
 

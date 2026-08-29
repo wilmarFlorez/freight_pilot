@@ -3,7 +3,7 @@ import "./styles.css";
 
 export const metadata: Metadata = {
   title: "Freight Pilot",
-  description: "Demo que transforma mensajes de transporte en solicitudes claras y listas para cotizar.",
+  description: "Demo that turns freight messages into clear requests ready for quotation.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
