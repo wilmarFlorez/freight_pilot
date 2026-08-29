@@ -24,3 +24,6 @@
 .example-message p { color: #506158; font-size: .9rem; line-height: 1.55; margin-bottom: 8px; }.example-message p:last-of-type { margin-bottom: 0; }.example-message strong { color: #14261f; font: 500 .68rem "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; }
 .example-message button { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; min-width: 30px; min-height: 30px; padding: 6px; background: transparent; color: #17663f; border: 1px solid #9eb8a3; font-size: 0; }.example-message button:hover { background: #e3efe4; color: #0f4f30; }.example-message button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 @media (max-width: 800px) { .intro { grid-template-columns: 1fr; gap: 28px; padding: 24px 20px; }.how-it-works { border-left: 0; border-top: 1px solid #cbd5cc; padding: 24px 0 0; }.intro-actions { display: grid; }.intro-actions a, .intro-actions button { width: 100%; text-align: center; } }
+
+.intake { grid-template-columns: 1fr; gap: 20px; }
+.intake .example-message { max-width: none; margin: 0; }

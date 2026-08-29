@@ -259,6 +259,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Mejorar la explicacion de la demo en la pantalla inicial | Hecho | La interfaz explica el problema, el flujo de tres pasos y permite cargar casos de ejemplo desde la propia pagina. |
 | 2026-08-28 | Sustituir las acciones de la introduccion por un ejemplo copiable | Hecho | La pantalla muestra un mensaje de cliente en cursiva como caso de uso y un icono para copiarlo antes de probarlo. |
 | 2026-08-28 | Aclarar el termino palets para visitantes no especializados | Hecho | El ejemplo, el placeholder y el campo usan “plataformas de carga (palets)”. |
+| 2026-08-28 | Reordenar la entrada de nueva solicitud | Hecho | El formulario ahora usa una composición vertical y sitúa el caso de uso entre su explicación y el área de texto. |
 
 ## 14. Proxima accion
 
