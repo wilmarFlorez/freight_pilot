@@ -232,6 +232,7 @@ Elegir un proveedor por capa y sus planes gratuitos o de bajo coste; no usar Doc
 | 2026-08-28 | Usar un monolito FastAPI + Next.js + PostgreSQL | Es suficiente para demostrar backend, API, IA y herramienta interna sin infraestructura adicional. |
 | 2026-08-28 | Usar SDK LLM directo en lugar de LangChain/LangGraph | La necesidad es una extraccion unica, no un workflow de agentes. Reduce dependencias y complejidad. |
 | 2026-08-28 | Simular canales mediante texto pegado | Demuestra el problema sin integrar email o mensajeria. |
+| 2026-08-28 | Mostrar escenarios de integracion sin implementarlos | La interfaz ilustra el valor futuro de conectar WhatsApp Business, correo y hojas de calculo, manteniendo el MVP sin integraciones reales. |
 | 2026-08-28 | Limitar la salida a preparacion para cotizacion | Evita convertir la demo en un TMS o motor de precios. |
 | 2026-08-28 | Presentar como aplicacion web desplegada con video corto | Permite una demo directa y una prueba reutilizable para perfiles y propuestas de Upwork. |
 | 2026-08-28 | Usar `uv` para el backend y Docker Compose solo para PostgreSQL local | Define una base reproducible sin añadir herramientas de orquestacion o infraestructura de despliegue. |
@@ -260,6 +261,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Sustituir las acciones de la introduccion por un ejemplo copiable | Hecho | La pantalla muestra un mensaje de cliente en cursiva como caso de uso y un icono para copiarlo antes de probarlo. |
 | 2026-08-28 | Aclarar el termino palets para visitantes no especializados | Hecho | El ejemplo, el placeholder y el campo usan “plataformas de carga (palets)”. |
 | 2026-08-28 | Reordenar la entrada de nueva solicitud | Hecho | El formulario ahora usa una composición vertical y sitúa el caso de uso entre su explicación y el área de texto. |
+| 2026-08-28 | Ilustrar integraciones habituales en Colombia | Hecho | La portada presenta casos de WhatsApp Business, Gmail/Microsoft 365 y Excel/Google Sheets como siguientes pasos, sin ampliar el alcance funcional. |
 
 ## 14. Proxima accion
 
