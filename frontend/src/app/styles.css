@@ -28,7 +28,7 @@
 .intake { grid-template-columns: 1fr; gap: 20px; }
 .intake .example-message { max-width: none; margin: 0; }
 
-.integrations { display: grid; grid-template-columns: minmax(230px, .7fr) 1.3fr; gap: 48px; padding: 32px; margin-bottom: 32px; }
+.integrations { display: grid; grid-template-columns: minmax(230px, .7fr) 1.3fr; gap: 48px; padding: 32px; margin: 32px 0; }
 .integrations-heading h2 { font-size: clamp(1.55rem, 2.5vw, 2.35rem); line-height: 1.1; letter-spacing: -.06em; margin-bottom: 16px; }
 .integrations-heading > p:not(.eyebrow) { color: #506158; font-size: .92rem; line-height: 1.65; margin-bottom: 0; }
 .integration-list { display: grid; gap: 0; list-style: none; margin: 0; padding: 0; counter-reset: integrations; }
@@ -36,6 +36,12 @@
 .integration-list li:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
 .integration-number { color: #17663f; font: 500 .72rem "DM Mono", monospace; padding-top: 4px; }
 .integration-list h3 { font-size: 1rem; letter-spacing: -.025em; margin-bottom: 6px; }
-.integration-list p { color: #506158; font-size: .88rem; line-height: 1.55; margin-bottom: 8px; }
-.integration-list small { color: #758278; font: 500 .67rem "DM Mono", monospace; line-height: 1.5; }
-@media (max-width: 800px) { .integrations { grid-template-columns: 1fr; gap: 26px; padding: 24px 20px; }.integration-list li { grid-template-columns: 32px 1fr; gap: 10px; } }
+.integration-list p { color: #506158; font-size: .84rem; line-height: 1.55; margin: 12px 0 0; }
+.flow { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr) 20px minmax(0, 1fr); align-items: center; gap: 8px; margin-top: 12px; }
+.flow-node { min-width: 0; min-height: 93px; border: 1px solid #cbd5cc; border-radius: 2px; padding: 11px; background: #fff; }
+.flow-node small { display: block; color: #758278; font: 500 .58rem "DM Mono", monospace; letter-spacing: .06em; margin-bottom: 8px; }
+.flow-node strong { display: block; font-size: .76rem; letter-spacing: -.02em; line-height: 1.2; }
+.flow-node span { display: block; color: #506158; font-size: .68rem; line-height: 1.35; margin-top: 5px; }
+.flow-node.engine { border-color: #7faa8a; background: #e3efe4; }.flow-node.destination { border-color: #aab9dc; background: #f2f5fc; }
+.flow-arrow { color: #17663f; font-size: 1.1rem; font-weight: 700; text-align: center; }
+@media (max-width: 800px) { .integrations { grid-template-columns: 1fr; gap: 26px; padding: 24px 20px; }.integration-list li { grid-template-columns: 32px 1fr; gap: 10px; }.flow { grid-template-columns: 1fr; gap: 6px; }.flow-node { min-height: auto; }.flow-arrow { transform: rotate(90deg); } }
