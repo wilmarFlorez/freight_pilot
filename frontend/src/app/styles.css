@@ -67,3 +67,5 @@ button, .intro-actions a { background: var(--accent); border-radius: 980px; colo
 .language-switch select { border-color: #b9d7f5; color: var(--accent); }
 .status.needs_review, .notice.error { background: var(--danger-pale); color: var(--danger); }.status.ready_for_quote, .clear { background: var(--navy-pale); color: var(--ink); }
 button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #edb184; outline-offset: 2px; }
+.inbox .section-title { align-items: stretch; flex-direction: column; gap: 14px; }
+.inbox .section-title select { width: 100%; }
