@@ -271,6 +271,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Añadir favicon de Freight Pilot | Hecho | Se incorporo `frontend/src/app/icon.svg`, basado en el icono `Truck` de Lucide y en el azul de la interfaz; Next.js lo detecta automaticamente como favicon. |
 | 2026-08-28 | Ajustar el encabezado de solicitudes | Hecho | Se elimino la etiqueta redundante “BANDEJA” y el filtro ocupa una fila propia para evitar recortes en columnas estrechas. |
 | 2026-08-28 | Corregir acentuacion del encabezado de nueva solicitud | Hecho | El encabezado ahora muestra “Pega el mensaje tal como llegó” en la interfaz y en el diccionario bilingüe. |
+| 2026-09-01 | Eliminar la numeracion de “Asi funciona” | Hecho | Los tres pasos conservan sus iconos descriptivos sin numeracion redundante. |
 
 ## 14. Proxima accion
 

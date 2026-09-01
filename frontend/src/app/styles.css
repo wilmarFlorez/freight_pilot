@@ -14,9 +14,8 @@
 .secondary-button { background: transparent; border: 1px solid #17663f; color: #17663f; }
 .secondary-button:hover { background: #e3efe4; color: #0f4f30; }
 .how-it-works { border-left: 1px solid #cbd5cc; padding-left: 32px; }
-.how-it-works ol { display: grid; gap: 18px; list-style: none; margin: 18px 0 0; padding: 0; }
-.how-it-works li { display: grid; grid-template-columns: 32px 1fr; gap: 10px; align-items: start; }
-.how-it-works span { color: #17663f; font: 500 .72rem "DM Mono", monospace; padding-top: 3px; }
+.how-it-works ul { display: grid; gap: 18px; list-style: none; margin: 18px 0 0; padding: 0; }
+.how-it-works li { display: grid; align-items: start; }
 .how-it-works p { color: #506158; font-size: .88rem; line-height: 1.5; margin: 0; }.how-it-works p svg { width: 15px; height: 15px; color: #17663f; margin: 0 7px -3px 0; stroke-width: 1.8; }
 .how-it-works strong { color: #14261f; }
 .intake-help { color: #506158; font-size: .84rem; line-height: 1.5; margin: 14px 0 0; }
