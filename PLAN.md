@@ -236,6 +236,8 @@ Elegir un proveedor por capa y sus planes gratuitos o de bajo coste; no usar Doc
 | 2026-08-28 | Limitar la salida a preparacion para cotizacion | Evita convertir la demo en un TMS o motor de precios. |
 | 2026-08-28 | Presentar como aplicacion web desplegada con video corto | Permite una demo directa y una prueba reutilizable para perfiles y propuestas de Upwork. |
 | 2026-08-28 | Usar `uv` para el backend y Docker Compose solo para PostgreSQL local | Define una base reproducible sin añadir herramientas de orquestacion o infraestructura de despliegue. |
+| 2026-09-01 | Desplegar API en Railway y PostgreSQL en Neon | Render no estaba disponible para la cuenta; esta alternativa mantiene una API y una base de datos administradas sin ampliar la arquitectura. |
+| 2026-09-01 | Configurar CORS mediante variable de entorno | Permite restringir la API al dominio publico de Vercel sin perder los origenes locales de desarrollo. |
 
 ## 13. Registro de progreso
 
@@ -272,6 +274,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Ajustar el encabezado de solicitudes | Hecho | Se elimino la etiqueta redundante “BANDEJA” y el filtro ocupa una fila propia para evitar recortes en columnas estrechas. |
 | 2026-08-28 | Corregir acentuacion del encabezado de nueva solicitud | Hecho | El encabezado ahora muestra “Pega el mensaje tal como llegó” en la interfaz y en el diccionario bilingüe. |
 | 2026-09-01 | Eliminar la numeracion de “Asi funciona” | Hecho | Los tres pasos conservan sus iconos descriptivos sin numeracion redundante. |
+| 2026-09-01 | Preparar CORS para el frontend desplegado | Hecho | `CORS_ALLOWED_ORIGINS` admite los dominios locales y el dominio de Vercel mediante configuracion de entorno. |
 
 ## 14. Proxima accion
 

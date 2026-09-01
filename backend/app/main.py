@@ -1,3 +1,4 @@
+import os
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Query, status
@@ -17,10 +18,14 @@ from app.extraction import DEMO_REQUESTS, DEMO_SOURCE_TEXTS, extract_transport_r
 from app.models import TransportRequest
 from app.validation import validate_transport_request
 
+allowed_origins = os.getenv(
+    "CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000"
+).split(",")
+
 app = FastAPI(title="Freight Pilot API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=allowed_origins,
     allow_methods=["GET", "POST", "PATCH"],
     allow_headers=["Content-Type"],
 )
