@@ -2,8 +2,8 @@
 
 > **Fuente unica de verdad.** Este documento define el alcance, las decisiones y el progreso del proyecto. Toda decision nueva, cambio de alcance, bloqueo o tarea terminada debe actualizarse aqui. Si otro documento lo contradice, prevalece este.
 
-**Estado:** en desarrollo (fases 0 a 4 completadas)
-**Ultima actualizacion:** 2026-08-28  
+**Estado:** en desarrollo (fases 0 a 5 completadas; preparación de despliegue)
+**Ultima actualizacion:** 2026-10-26
 **Objetivo de entrega:** demo funcional de portfolio en pocos dias
 
 ## 1. Proposito
@@ -60,7 +60,7 @@ No se crea una cotizacion ni se asigna un vehiculo. El limite del proyecto es pr
 - Motor de precios, cotizacion, asignacion de vehiculos o seguimiento de envios.
 - Cargas de archivos, OCR y procesamiento de adjuntos.
 - Notificaciones, trabajos en segundo plano, colas, webhooks o event bus.
-- Microservicios, contenedores de produccion, Kubernetes, CI/CD complejo u observabilidad enterprise.
+- Microservicios, Kubernetes, CI/CD complejo u observabilidad enterprise.
 - LangChain o LangGraph salvo que una necesidad demostrable no pueda resolverse con el SDK del proveedor LLM y Pydantic. Para este MVP no se necesitan.
 
 ### Regla de control de alcance
@@ -208,22 +208,21 @@ La pieza final se presentara como una aplicacion web desplegada, no solo como co
 4. Abrir un caso en `needs_review`, corregir un dato y volver a validar.
 5. Mostrar que termina en `ready_for_quote` y que queda guardado en la bandeja.
 
-### Despliegue minimo recomendado
+### Despliegue mínimo previsto
 
-| Componente | Opcion simple | Alternativa |
-| --- | --- | --- |
-| Frontend Next.js | Vercel | Render Static Site |
-| API FastAPI | Render Web Service | Railway |
-| PostgreSQL | Render Postgres | Neon |
+- **Despliegue previsto:** servidor domestico Ubuntu 24.04.5 LTS, sin VPS de pago como opcion predeterminada. Docker Compose de produccion separado del Compose de desarrollo ejecutara Next.js, FastAPI, PostgreSQL y `cloudflared`.
+- **Acceso publico:** Cloudflare Tunnel saliente evita requerir una direccion IPv4 publica o abrir puertos entrantes en el router. El tunel solo alcanza frontend y API. PostgreSQL permanece en una red Docker interna, sin puerto publicado.
+- **Dominios:** la interfaz se propone en `freight.nuteam.ai`. `api.freight.nuteam.ai` es una propuesta pendiente de aprobacion; la URL publica de API y el origen CORS se configuran explicitamente. No se modifican DNS desde este repositorio. Los registros raiz y `www` que apuntan a Vercel deben conservarse.
+- **Persistencia:** la base desplegada inicia en un volumen nuevo y vacio; no se migran datos locales ni se respaldan datos de demo. Si se pierde el servidor, se despliega desde cero, Alembic aplica el esquema y los casos ficticios se vuelven a cargar manualmente.
+- **Secretos:** contrasena de PostgreSQL, `OPENAI_API_KEY` y `CLOUDFLARE_TUNNEL_TOKEN` se inyectan en tiempo de ejecucion. La clave de OpenAI solo llega al backend. `NEXT_PUBLIC_API_URL` es publica y se incorpora al bundle al construir el frontend; nunca debe contener secretos.
 
-Elegir un proveedor por capa y sus planes gratuitos o de bajo coste; no usar Docker, Kubernetes, Terraform, CDN, colas ni servicios cloud adicionales para este portfolio. Si se necesita reducir aun mas el tiempo, Render puede alojar API y PostgreSQL, y Vercel el frontend.
+### Consideraciones de demo publica
 
-### Consideraciones de demo
-
-- Proteger la ruta de siembra de datos o eliminarla fuera de una demo controlada.
-- Limitar el endpoint de extraccion para evitar consumo no controlado de la API LLM si la URL queda publica.
-- Incluir casos preprocesados como alternativa si la clave LLM no esta configurada o se alcanza un limite de coste.
-- No se requiere login: la URL es una demo de una herramienta interna ficticia.
+- La demo permanece abierta y sin login. Las solicitudes son compartidas: cualquier visitante puede leerlas y modificarlas; no se deben introducir datos confidenciales.
+- El texto original de cada solicitud se envia a OpenAI para extraer sus campos. `OPENAI_API_KEY` permanece exclusivamente en el backend.
+- `POST /demo/seed` sigue publico y sin cambios de comportamiento: crea los tres casos ficticios si no existen y restablece sus datos de semilla y correcciones para las solicitudes de esos casos. Cualquier visitante puede invocarlo.
+- El proyecto OpenAI dedicado usa `gpt-4o-mini`, limite de gasto de US$5 por periodo con alertas al 50 % y 80 %, y limites compartidos de proyecto de 5 RPM/20.000 TPM. No son limites por visitante ni por IP.
+- El servidor domestico depende de su energia y conectividad; Cloudflare Tunnel resuelve la limitacion probable de CGNAT, no las interrupciones del servidor o de Internet.
 
 ## 12. Decision log
 
@@ -238,6 +237,10 @@ Elegir un proveedor por capa y sus planes gratuitos o de bajo coste; no usar Doc
 | 2026-08-28 | Usar `uv` para el backend y Docker Compose solo para PostgreSQL local | Define una base reproducible sin añadir herramientas de orquestacion o infraestructura de despliegue. |
 | 2026-09-01 | Desplegar API en Railway y PostgreSQL en Neon | Render no estaba disponible para la cuenta; esta alternativa mantiene una API y una base de datos administradas sin ampliar la arquitectura. |
 | 2026-09-01 | Configurar CORS mediante variable de entorno | Permite restringir la API al dominio publico de Vercel sin perder los origenes locales de desarrollo. |
+| 2026-10-25 | Revisar la estrategia de despliegue para un servidor domestico | Se reemplaza la recomendacion Railway/Neon y la exclusion de contenedores de produccion: Compose separado y Cloudflare Tunnel permiten publicar la demo en el servidor existente sin contratar un VPS. |
+| 2026-10-25 | Mantener la demo publica y compartida en el servidor domestico | No se agregan autenticacion ni limites por visitante; README y guia de despliegue explican la visibilidad y edicion compartida, el envio de texto a OpenAI y el comportamiento publico de `/demo/seed`. |
+| 2026-10-25 | Dejar pendiente la aprobacion del hostname publico de API | `api.freight.nuteam.ai` es una propuesta; la configuracion exige la URL aprobada y no crea registros DNS. |
+| 2026-10-26 | Tratar los datos de demo como descartables, sin respaldo ni restauracion | Ante perdida de datos, recuperar mediante un despliegue limpio y volver a cargar los casos ficticios. |
 
 ## 13. Registro de progreso
 
@@ -275,7 +278,9 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-08-28 | Corregir acentuacion del encabezado de nueva solicitud | Hecho | El encabezado ahora muestra “Pega el mensaje tal como llegó” en la interfaz y en el diccionario bilingüe. |
 | 2026-09-01 | Eliminar la numeracion de “Asi funciona” | Hecho | Los tres pasos conservan sus iconos descriptivos sin numeracion redundante. |
 | 2026-09-01 | Preparar CORS para el frontend desplegado | Hecho | `CORS_ALLOWED_ORIGINS` admite los dominios locales y el dominio de Vercel mediante configuracion de entorno. |
+| 2026-10-25 | Preparar Docker Compose para servidor domestico | Hecho | Dockerfiles, Compose de produccion y guia de operacion aislados del desarrollo; 26 pruebas backend, lint, validacion Compose y construccion de ambas imagenes correctos. npm reporto avisos de vulnerabilidades en dependencias existentes; no se actualizaron dependencias. No se iniciaron servicios ni se desplego. |
+| 2026-10-26 | Simplificar recuperación de datos de demo | Hecho | `docs/deployment-home-server.md` ya no propone respaldos ni restauraciones; documenta recrear una base vacia y volver a cargar las semillas. |
 
 ## 14. Proxima accion
 
-Fases 0 a 5 completadas. La demo esta lista para presentacion local; el despliegue y un video corto quedan como mejoras opcionales de portfolio.
+Fases 0 a 5 completadas y configuracion Docker de produccion preparada localmente. Quedan pendientes la aprobacion del hostname de API, la creacion del tunel y registros DNS mediante aprobacion separada, y el despliegue manual.

@@ -1,0 +1,91 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: freight_pilot
+      POSTGRES_USER: freight_pilot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a generated URL-safe production password}
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+    networks:
+      - database
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U freight_pilot -d freight_pilot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      PYTHON_DOTENV_DISABLED: "1"
+      DATABASE_URL: postgresql+psycopg://freight_pilot:${POSTGRES_PASSWORD:?Set a generated URL-safe production password}@postgres:5432/freight_pilot
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?Provide the OpenAI API key at runtime}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:?Set the exact public frontend origin}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - application
+      - database
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?Set the approved public API URL before building}
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - application
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  cloudflared:
+    image: cloudflare/cloudflared:2025.11.1
+    restart: unless-stopped
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?Provide the tunnel token at runtime}
+    command: ["tunnel", "--no-autoupdate", "run"]
+    depends_on:
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - application
+
+volumes:
+  production_postgres_data:
+
+networks:
+  application:
+  database:
+    internal: true

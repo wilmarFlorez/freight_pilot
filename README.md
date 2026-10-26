@@ -46,6 +46,12 @@ Tras guardar la correccion, la validacion determinista actualiza el estado a lis
 
 ![Solicitud revalidada](docs/assets/demo-review-after.png)
 
+## Despliegue en servidor doméstico
+
+La configuración de producción para Docker Compose y Cloudflare Tunnel está en [docs/deployment-home-server.md](docs/deployment-home-server.md). Es independiente del Compose local de PostgreSQL y no reutiliza sus valores de desarrollo.
+
+La demo desplegada es pública y compartida: otros visitantes pueden leer y modificar las solicitudes. El texto introducido se envía a OpenAI. No uses información confidencial. El endpoint público `/demo/seed` puede crear o restablecer los tres casos ficticios.
+
 ## Verificacion de la base inicial
 
 - Backend: `uv run --directory backend python -c "from app.main import app; assert app.title == 'Freight Pilot API'"`
