@@ -280,6 +280,7 @@ Actualizar esta tabla al iniciar y terminar cada tarea. Usar estados `Pendiente`
 | 2026-09-01 | Preparar CORS para el frontend desplegado | Hecho | `CORS_ALLOWED_ORIGINS` admite los dominios locales y el dominio de Vercel mediante configuracion de entorno. |
 | 2026-10-25 | Preparar Docker Compose para servidor domestico | Hecho | Dockerfiles, Compose de produccion y guia de operacion aislados del desarrollo; 26 pruebas backend, lint, validacion Compose y construccion de ambas imagenes correctos. npm reporto avisos de vulnerabilidades en dependencias existentes; no se actualizaron dependencias. No se iniciaron servicios ni se desplego. |
 | 2026-10-26 | Simplificar recuperación de datos de demo | Hecho | `docs/deployment-home-server.md` ya no propone respaldos ni restauraciones; documenta recrear una base vacia y volver a cargar las semillas. |
+| 2026-10-26 | Corregir caché de uv en el contenedor backend | Hecho | `UV_CACHE_DIR=/tmp/uv-cache` se crea como `freightpilot`; la imagen se construyo y `uv run` funciono con uid 10001. |
 
 ## 14. Proxima accion
 

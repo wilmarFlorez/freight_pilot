@@ -14,12 +14,16 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 RUN uv sync --locked --no-dev
 
+ENV UV_CACHE_DIR=/tmp/uv-cache
+
 RUN addgroup --system --gid 10001 freightpilot \
     && adduser --system --uid 10001 --ingroup freightpilot freightpilot
 
 COPY --chown=freightpilot:freightpilot . .
 
 USER freightpilot
+
+RUN mkdir -p "$UV_CACHE_DIR"
 
 EXPOSE 8000
 
